@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">@font/bold</item>
+        <item name="fontFamily">@font/bold</item>
+    </style>
+
+    <style name="BottomNavItemTextAppearanceActive" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:fontFamily">@font/bold</item>
+        <item name="fontFamily">@font/bold</item>
+    </style>
+
+    <style name="BottomNavItemTextAppearanceInactive" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="fontFamily">@font/regular</item>
+    </style>
+</resources>
