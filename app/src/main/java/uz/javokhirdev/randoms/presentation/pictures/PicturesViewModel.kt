@@ -31,62 +31,64 @@ class PicturesViewModel @Inject constructor() : ViewModel() {
             ListModel(
                 id = 1,
                 title = "Cats pictures and gifs",
-                cover = "file:///android_asset/pictures/image_01.webp"
-            ),
-            ListModel(
-                id = 2,
-                title = "Pictures of bears",
-                cover = "file:///android_asset/pictures/image_02.webp"
+                cover = "file:///android_asset/pictures/image_01.webp",
+                baseUrl = "https://cataas.com/cat",
+                isImageUrl = true
             ),
             ListModel(
                 id = 3,
                 title = "Pictures of dogs",
-                cover = "file:///android_asset/pictures/image_03.webp"
+                cover = "file:///android_asset/pictures/image_03.webp",
+                baseUrl = "https://random.dog/woof.json"
             ),
             ListModel(
                 id = 4,
                 title = "Pictures of ducks",
-                cover = "file:///android_asset/pictures/image_04.webp"
+                cover = "file:///android_asset/pictures/image_04.webp",
+                baseUrl = "https://random-d.uk/api/v2/random"
             ),
             ListModel(
                 id = 5,
                 title = "Pictures of foxes",
-                cover = "file:///android_asset/pictures/image_05.webp"
+                cover = "file:///android_asset/pictures/image_05.webp",
+                baseUrl = "https://randomfox.ca/floof/"
             ),
             ListModel(
                 id = 6,
                 title = "Pictures of zoo animals",
-                cover = "file:///android_asset/pictures/image_06.webp"
+                cover = "file:///android_asset/pictures/image_06.webp",
+                baseUrl = "https://zoo-animal-api.herokuapp.com/animals/rand"
             ),
             ListModel(
                 id = 7,
                 title = "Pictures of coffee",
-                cover = "file:///android_asset/pictures/image_07.webp"
+                cover = "file:///android_asset/pictures/image_07.webp",
+                baseUrl = "https://coffee.alexflipnote.dev/random.json"
             ),
             ListModel(
                 id = 8,
                 title = "Pictures of food dishes",
-                cover = "file:///android_asset/pictures/image_08.webp"
+                cover = "file:///android_asset/pictures/image_08.webp",
+                baseUrl = "https://foodish-api.herokuapp.com/api"
             ),
             ListModel(
                 id = 9,
                 title = "Neko images, funny GIFs & more",
-                cover = "file:///android_asset/pictures/image_09.webp"
-            ),
-            ListModel(
-                id = 10,
-                title = "Rick and Morty images",
-                cover = "file:///android_asset/pictures/image_10.webp"
+                cover = "file:///android_asset/pictures/image_09.webp",
+                baseUrl = "https://api.catboys.com/img"
             ),
             ListModel(
                 id = 11,
                 title = "Biriyani images",
-                cover = "file:///android_asset/pictures/image_11.webp"
+                cover = "file:///android_asset/pictures/image_11.webp",
+                baseUrl = "https://biriyani.anoram.com/get"
             ),
             ListModel(
                 id = 12,
                 title = "Images from Unsplash",
-                cover = "file:///android_asset/pictures/image_12.webp"
+                cover = "file:///android_asset/pictures/image_12.webp",
+                baseUrl = "https://picsum.photos/1080",
+                isImageUrl = true
             )
         )
 }

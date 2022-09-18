@@ -10,13 +10,14 @@ import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import uz.javokhirdev.randoms.core.Constants
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+object NetworkModule {
 
     @[Provides Singleton]
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient().newBuilder().apply {
@@ -48,6 +49,7 @@ class NetworkModule {
         }
 
         return Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(nullOnEmptyConverterFactory)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)

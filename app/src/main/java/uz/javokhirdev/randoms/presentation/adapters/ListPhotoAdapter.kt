@@ -36,7 +36,7 @@ class ListPhotoAdapter(
 
         fun bind(item: ListModel) {
             with(binding) {
-                imageItem.loadImage(item.cover)
+                imageItem.loadImage(item.cover, false)
                 textTitle.text = item.title.orEmpty()
             }
         }

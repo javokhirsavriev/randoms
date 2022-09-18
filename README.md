@@ -1,18 +1,3 @@
-Random pictures
-
-Cats pictures and gifs - https://cataas.com/#/
-Pictures of bears - https://placebear.com/
-Pictures of dogs - https://place.dog/, https://random.dog/
-Pictures of ducks - https://random-d.uk/api
-Pictures of foxes - https://randomfox.ca/floof/
-Pictures of zoo animals - https://zoo-animal-api.herokuapp.com/animals/rand
-Pictures of coffee - https://coffee.alexflipnote.dev/
-Pictures of food dishes - https://foodish-api.herokuapp.com/
-Neko images, funny GIFs & more - https://catboys.com/api, https://docs.nekos.best/
-Rick and Morty images - https://rickandmortyapi.com/
-Biriyani images - https://biriyani.anoram.com/
-Images from Unsplash - https://picsum.photos/
-
 Facts
 
 Facts of cats - https://alexwohlbruck.github.io/cat-facts/
