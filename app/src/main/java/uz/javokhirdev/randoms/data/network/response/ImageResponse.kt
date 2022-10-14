@@ -1,8 +1,10 @@
 package uz.javokhirdev.randoms.data.network.response
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import uz.javokhirdev.randoms.data.base.DataMapper
 
+@Keep
 data class ImageResponse(
     @SerializedName("url")
     val url: String? = null,

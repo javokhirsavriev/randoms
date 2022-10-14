@@ -5,5 +5,6 @@ data class ListModel(
     val title: String? = null,
     val cover: String? = null,
     val baseUrl: String? = null,
-    val isImageUrl: Boolean = false
+    val isImageUrl: Boolean = false,
+    val isJokeListUrl: Boolean = false
 )

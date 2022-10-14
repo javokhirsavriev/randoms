@@ -27,14 +27,6 @@ Zen quotes - https://zenquotes.io/
 Programming quotes - https://github.com/skolakoda/programming-quotes-api
 Code quotes - https://nodejs-quoteapp.herokuapp.com/
 
-Meme & Jokes
-
-Dad jokes - https://icanhazdadjoke.com/api
-Chuck Norris jokes - https://api.chucknorris.io/
-Yo Momma jokes - https://github.com/beanboi7/yomomma-apiv2
-Programming jokes - https://sv443.net/jokeapi/v2/
-Dev jokes - https://documenter.getpostman.com/view/16443297/TzkyLee7
-
 More activities
 
 Activities - https://www.boredapi.com/

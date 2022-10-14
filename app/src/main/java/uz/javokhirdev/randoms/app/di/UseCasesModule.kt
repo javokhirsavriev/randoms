@@ -5,7 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import uz.javokhirdev.randoms.data.repository.JokesRepository
 import uz.javokhirdev.randoms.data.repository.PicturesRepository
+import uz.javokhirdev.randoms.domain.JokesUseCases
 import uz.javokhirdev.randoms.domain.PicturesUseCases
 
 @Module
@@ -16,6 +18,14 @@ object UseCasesModule {
     fun providesPicturesUseCases(repository: PicturesRepository): PicturesUseCases {
         return PicturesUseCases(
             getRandomImage = repository::getRandomImage
+        )
+    }
+
+    @[Provides ViewModelScoped]
+    fun providesJokesUseCases(repository: JokesRepository): JokesUseCases {
+        return JokesUseCases(
+            getJoke = repository::getJoke,
+            getJokeList = repository::getJokeList,
         )
     }
 }

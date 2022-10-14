@@ -21,9 +21,14 @@ object NetworkModule {
 
     @[Provides Singleton]
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient().newBuilder().apply {
-        connectTimeout(60, TimeUnit.SECONDS)
-        readTimeout(60, TimeUnit.SECONDS)
-        writeTimeout(60, TimeUnit.SECONDS)
+        connectTimeout(120, TimeUnit.SECONDS)
+        readTimeout(120, TimeUnit.SECONDS)
+        writeTimeout(120, TimeUnit.SECONDS)
+        addInterceptor {
+            val requestBuilder = it.request().newBuilder()
+            requestBuilder.addHeader("Accept", "application/json")
+            it.proceed(requestBuilder.build())
+        }
     }.build()
 
     @[Provides Singleton]

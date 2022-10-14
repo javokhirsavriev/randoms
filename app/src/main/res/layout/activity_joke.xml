@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.picture.PictureActivity">
+    tools:context=".presentation.joke.JokeActivity">
 
-    <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/imageRandom"
+    <ImageView
+        android:id="@+id/imageJoke"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:contentDescription="@string/image_content" />
+        android:contentDescription="@string/image_content"
+        android:scaleType="centerCrop" />
 
     <ImageButton
         android:id="@+id/buttonBack"
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/image_content"
         android:src="@drawable/ic_arrow_back"
@@ -41,13 +42,13 @@
             android:src="@drawable/ic_refresh" />
 
         <ImageButton
-            android:id="@+id/buttonDownload"
+            android:id="@+id/buttonShare"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginStart="12dp"
             android:background="@drawable/shape_oval"
             android:contentDescription="@string/image_content"
             android:fitsSystemWindows="true"
-            android:src="@drawable/ic_download" />
+            android:src="@drawable/ic_share" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

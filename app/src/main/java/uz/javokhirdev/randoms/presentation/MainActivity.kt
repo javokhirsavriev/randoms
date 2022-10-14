@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.javokhirdev.randoms.R
 import uz.javokhirdev.randoms.databinding.ActivityMainBinding
 import uz.javokhirdev.randoms.presentation.facts.FactsFragment
-import uz.javokhirdev.randoms.presentation.memes.MemesFragment
+import uz.javokhirdev.randoms.presentation.jokes.JokesFragment
 import uz.javokhirdev.randoms.presentation.more.MoreFragment
 import uz.javokhirdev.randoms.presentation.navigation.NavRoutes
 import uz.javokhirdev.randoms.presentation.pictures.PicturesFragment
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 fragment<PicturesFragment>(route = NavRoutes.pictures) {
                     label = getString(R.string.title_pictures)
                 }
-                fragment<MemesFragment>(route = NavRoutes.memes) {
+                fragment<JokesFragment>(route = NavRoutes.jokes) {
                     label = getString(R.string.title_memes)
                 }
                 fragment<FactsFragment>(route = NavRoutes.facts) {
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.memes -> {
-                    navController.navigate(NavRoutes.memes, options)
+                    navController.navigate(NavRoutes.jokes, options)
                     return@setOnItemSelectedListener true
                 }
                 R.id.facts -> {

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Randoms">
         <activity
+            android:name=".presentation.joke.JokeActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.picture.PictureActivity"
             android:exported="false" />
         <activity
