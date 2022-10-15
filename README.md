@@ -1,15 +1,3 @@
-Facts
-
-Facts of cats - https://alexwohlbruck.github.io/cat-facts/
-Facts of dogs - https://kinduff.github.io/dog-api/
-Anime facts - https://chandan-02.github.io/anime-facts-rest-api/
-Useless, but true facts - https://uselessfacts.jsph.pl/
-Fun facts - https://asli-fun-fact-api.herokuapp.com/
-Facts about numbers - http://numbersapi.com/#42
-Chuck Norris facts - https://rapidapi.com/collection/random-facts-api
-Knowledge facts - https://webknox.com/api
-Random facts - https://fungenerators.com/api/facts/
-
 Quotes
 
 Anime quotes - https://github.com/RocktimSaikia/anime-chan

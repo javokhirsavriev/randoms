@@ -17,4 +17,7 @@
     <string name="title_more">More activities</string>
     <string name="title_pictures">Random pictures</string>
     <string name="title_quotes">Quotes</string>
+    <string name="refresh">Refresh</string>
+    <string name="download">Download</string>
+    <string name="share">Share</string>
 </resources>

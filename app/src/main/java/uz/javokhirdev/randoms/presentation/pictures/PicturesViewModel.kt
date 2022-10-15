@@ -1,28 +1,46 @@
 package uz.javokhirdev.randoms.presentation.pictures
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import uz.javokhirdev.randoms.data.UIState
 import uz.javokhirdev.randoms.data.model.ListModel
+import uz.javokhirdev.randoms.domain.UseCases
+import uz.javokhirdev.randoms.presentation.navigation.NavArguments
 import javax.inject.Inject
 
 @HiltViewModel
-class PicturesViewModel @Inject constructor() : ViewModel() {
+class PicturesViewModel @Inject constructor(
+    private val useCases: UseCases
+) : ViewModel() {
 
     private val uiStateData = MutableStateFlow(emptyList<ListModel>())
     val uiState = uiStateData.asStateFlow()
 
-    init {
-        getPictures()
+    private val randomImageData = MutableLiveData<UIState<String>>()
+    val randomImage: LiveData<UIState<String>> = randomImageData
+
+    fun getPictures() {
+        viewModelScope.launch { uiStateData.value = pictures }
     }
 
-    private fun getPictures() {
+    fun getRandomImage() {
+        val model = NavArguments.model ?: return
+
         viewModelScope.launch {
-            uiStateData.update { pictures }
+            if (model.isImageUrl) {
+                randomImageData.value = UIState.success(model.baseUrl)
+            } else {
+                useCases.getRandomImage(model.baseUrl.orEmpty()).collectLatest {
+                    randomImageData.value = it
+                }
+            }
         }
     }
 

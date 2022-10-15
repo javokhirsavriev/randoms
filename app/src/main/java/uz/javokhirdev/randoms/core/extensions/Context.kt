@@ -4,16 +4,16 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 
 fun Any?.log() {
     Log.d("LOG_TAG", this.toString())
 }
+
+fun Context.px(dp: Int) = (dp * resources.displayMetrics.density).toInt()
 
 inline val Context.inflater: LayoutInflater
     get() = LayoutInflater.from(this)
@@ -25,15 +25,6 @@ fun <T> Fragment.start(it: Class<T>) {
 
 fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-}
-
-fun Context.gotoUrl(url: String) {
-    try {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(intent)
-    } catch (t: Throwable) {
-        t.printStackTrace()
-    }
 }
 
 fun Context.shareText(text: String) {

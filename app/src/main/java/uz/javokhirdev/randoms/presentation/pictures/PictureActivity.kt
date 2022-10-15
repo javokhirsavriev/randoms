@@ -1,9 +1,11 @@
-package uz.javokhirdev.randoms.presentation.picture
+package uz.javokhirdev.randoms.presentation.pictures
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import dagger.hilt.android.AndroidEntryPoint
+import uz.javokhirdev.randoms.core.extensions.insetsPadding
 import uz.javokhirdev.randoms.core.extensions.loadImage
 import uz.javokhirdev.randoms.core.extensions.onClick
 import uz.javokhirdev.randoms.core.extensions.toast
@@ -20,7 +22,7 @@ class PictureActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityPictureBinding.inflate(layoutInflater) }
 
-    private val viewModel by viewModels<PictureViewModel>()
+    private val viewModel by viewModels<PicturesViewModel>()
 
     @Inject
     lateinit var downloaderManager: DownloaderManager
@@ -28,24 +30,33 @@ class PictureActivity : AppCompatActivity() {
     private var downloadUrl: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         with(binding) {
-            buttonBack.onClick { finish() }
+            layoutActions.insetsPadding(24)
+
+            toolbar.title = NavArguments.model?.title.orEmpty()
+            toolbar.setNavigationOnClickListener { finish() }
+
             buttonRefresh.onClick { viewModel.getRandomImage() }
             buttonDownload.onClick { downloaderManager.download(downloadUrl) }
         }
 
-        viewModel.uiState.observe(this) { onUiState(it) }
+        with(viewModel) {
+            getRandomImage()
+
+            randomImage.observe(this@PictureActivity) { onRandomImage(it) }
+        }
     }
 
-    private fun onUiState(uiState: UIState<String>) {
+    private fun onRandomImage(uiState: UIState<String>) {
         uiState onSuccess {
             downloadUrl = data
             binding.imageRandom.loadImage(
                 url = data,
-                skipMemoryCache = NavArguments.listModel?.isImageUrl ?: false
+                skipMemoryCache = NavArguments.model?.isImageUrl ?: false
             )
         } onFailure {
             toast(message)

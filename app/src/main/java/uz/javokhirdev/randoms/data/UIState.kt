@@ -2,6 +2,7 @@ package uz.javokhirdev.randoms.data
 
 sealed class UIState<out T> where T : Any? {
     object Idle : UIState<Nothing>()
+    object Loading : UIState<Nothing>()
     data class Success<T>(val data: T? = null) : UIState<T>()
     data class Failure(val message: String) : UIState<Nothing>()
 

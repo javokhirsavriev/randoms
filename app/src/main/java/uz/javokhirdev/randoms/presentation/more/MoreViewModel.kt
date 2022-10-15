@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import uz.javokhirdev.randoms.data.model.ListModel
 import javax.inject.Inject
@@ -22,7 +21,7 @@ class MoreViewModel @Inject constructor() : ViewModel() {
 
     private fun getMoreData() {
         viewModelScope.launch {
-            uiStateData.update { moreItems }
+            uiStateData.value = moreItems
         }
     }
 

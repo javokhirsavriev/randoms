@@ -6,5 +6,5 @@ data class ListModel(
     val cover: String? = null,
     val baseUrl: String? = null,
     val isImageUrl: Boolean = false,
-    val isJokeListUrl: Boolean = false
+    val isListUrl: Boolean = false
 )

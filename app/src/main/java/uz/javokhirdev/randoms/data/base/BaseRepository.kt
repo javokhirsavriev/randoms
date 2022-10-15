@@ -1,11 +1,11 @@
 package uz.javokhirdev.randoms.data.base
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.ResponseBody
 import retrofit2.Response
+import uz.javokhirdev.randoms.core.helpers.DispatcherProvider
 import uz.javokhirdev.randoms.data.UIState
 
 abstract class BaseRepository {
@@ -17,7 +17,7 @@ abstract class BaseRepository {
      */
     protected fun <T> doRequest(request: suspend () -> T) = flow<UIState<T>> {
         emit(UIState.success(request()))
-    }.flowOn(Dispatchers.IO).catch { exception ->
+    }.flowOn(DispatcherProvider.IO).catch { exception ->
         emit(UIState.Failure(exception.toMessage()))
     }
 
@@ -36,12 +36,12 @@ abstract class BaseRepository {
                 emit(UIState.Failure(it.errorBody().toMessage()))
             }
         }
-    }.flowOn(Dispatchers.IO).catch { exception ->
+    }.flowOn(DispatcherProvider.IO).catch { exception ->
         emit(UIState.Failure(exception.toMessage()))
     }
 
     private fun Throwable?.toMessage(): String {
-        return this?.localizedMessage ?: "Error Occurred!"
+        return this?.localizedMessage.orEmpty().ifEmpty { "Error Occurred!" }
     }
 
     private fun ResponseBody?.toMessage(): String {

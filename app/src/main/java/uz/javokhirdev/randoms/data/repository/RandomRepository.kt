@@ -7,16 +7,24 @@ import uz.javokhirdev.randoms.data.model.JokeModel
 import uz.javokhirdev.randoms.data.network.RandomsApi
 import javax.inject.Inject
 
-interface JokesRepository {
+interface RandomRepository {
+
+    suspend fun getRandomImage(baseUrl: String): Flow<UIState<String>>
 
     suspend fun getJoke(baseUrl: String): Flow<UIState<JokeModel>>
 
     suspend fun getJokeList(baseUrl: String): Flow<UIState<JokeModel>>
+
+    suspend fun getFact(baseUrl: String): Flow<UIState<String>>
 }
 
-class JokesRepositoryImpl @Inject constructor(
+class RandomRepositoryImpl @Inject constructor(
     private val randomsApi: RandomsApi
-) : BaseRepository(), JokesRepository {
+) : BaseRepository(), RandomRepository {
+
+    override suspend fun getRandomImage(baseUrl: String): Flow<UIState<String>> {
+        return doNetworkRequest { randomsApi.getRandomImage(baseUrl) }
+    }
 
     override suspend fun getJoke(baseUrl: String): Flow<UIState<JokeModel>> {
         return doNetworkRequest { randomsApi.getJoke(baseUrl) }
@@ -24,5 +32,9 @@ class JokesRepositoryImpl @Inject constructor(
 
     override suspend fun getJokeList(baseUrl: String): Flow<UIState<JokeModel>> {
         return doNetworkRequest { randomsApi.getJokeList(baseUrl) }
+    }
+
+    override suspend fun getFact(baseUrl: String): Flow<UIState<String>> {
+        return doNetworkRequest { randomsApi.getFact(baseUrl) }
     }
 }

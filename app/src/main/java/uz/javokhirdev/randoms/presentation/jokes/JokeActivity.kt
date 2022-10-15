@@ -1,8 +1,9 @@
-package uz.javokhirdev.randoms.presentation.joke
+package uz.javokhirdev.randoms.presentation.jokes
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import uz.javokhirdev.randoms.core.extensions.*
@@ -18,28 +19,43 @@ class JokeActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityJokeBinding.inflate(layoutInflater) }
 
-    private val viewModel by viewModels<JokeViewModel>()
+    private val viewModel by viewModels<JokesViewModel>()
+
+    private var joke: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(binding.root)
 
         with(binding) {
-            imageJoke.loadImage(NavArguments.listModel?.cover)
+            layoutActions.insetsPadding(24)
 
-            buttonBack.onClick { finish() }
+            toolbar.title = NavArguments.model?.title.orEmpty()
+            toolbar.setNavigationOnClickListener { finish() }
+
             buttonRefresh.onClick { viewModel.getJoke() }
-            buttonShare.onClick { shareText("") }
+            buttonShare.onClick { shareText(joke) }
         }
 
-        repeatingJobOnStarted {
-            viewModel.uiState.collectLatest { onUiState(it) }
+        with(viewModel) {
+            getJoke()
+
+            repeatingJobOnStarted { joke.collectLatest { onJoke(it) } }
         }
     }
 
-    private fun onUiState(uiState: UIState<JokeModel>) {
+    private fun onJoke(uiState: UIState<JokeModel>) {
         uiState onSuccess {
+            with(binding) {
+                textQuestion.beVisibleIf(!data?.question.isNullOrEmpty())
+                textQuestion.text = data?.question.orEmpty()
 
+                textPunchline.beVisibleIf(!data?.punchline.isNullOrEmpty())
+                textPunchline.text = data?.punchline.orEmpty()
+
+                joke = "${data?.question.orEmpty()}\n\n${data?.punchline.orEmpty()}"
+            }
         } onFailure {
             toast(message)
         }

@@ -4,50 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.picture.PictureActivity">
+    tools:context=".presentation.pictures.PictureActivity">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/imageRandom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/image_content" />
 
-    <ImageButton
-        android:id="@+id/buttonBack"
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/image_content"
-        android:src="@drawable/ic_arrow_back"
-        app:tint="?attr/colorOnSurface" />
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="?attr/colorOnSurface"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/ToolbarTitleTextAppearance" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
+        android:id="@+id/layoutActions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="72dp"
+        android:layout_gravity="bottom|end"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <ImageButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/buttonRefresh"
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:background="@drawable/shape_oval"
-            android:contentDescription="@string/image_content"
-            android:fitsSystemWindows="true"
+            android:contentDescription="@string/refresh"
             android:src="@drawable/ic_refresh" />
 
-        <ImageButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/buttonDownload"
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:background="@drawable/shape_oval"
-            android:contentDescription="@string/image_content"
-            android:fitsSystemWindows="true"
+            android:contentDescription="@string/download"
             android:src="@drawable/ic_download" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

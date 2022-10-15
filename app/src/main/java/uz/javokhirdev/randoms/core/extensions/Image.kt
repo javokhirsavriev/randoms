@@ -3,7 +3,6 @@ package uz.javokhirdev.randoms.core.extensions
 import android.content.Context
 import android.util.TypedValue
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -33,10 +32,4 @@ fun ImageView.loadImage(
         .transition(DrawableTransitionOptions.withCrossFade())
         .placeholder(if (withProgress) progressDrawable else null)
         .into(this)
-}
-
-fun ImageView.imageRes(res: Int? = null) = res?.let { setImageResource(it) }
-
-fun ImageView.imageTint(color: Int) {
-    imageTintList = ContextCompat.getColorStateList(context, color)
 }

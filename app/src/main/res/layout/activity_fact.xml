@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.jokes.JokeActivity">
+    tools:context=".presentation.facts.FactActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,19 +39,9 @@
                 android:padding="24dp">
 
                 <TextView
-                    android:id="@+id/textQuestion"
+                    android:id="@+id/textFact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-                    android:textSize="28sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/textPunchline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/bold"
                     android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
                     android:textSize="28sp"

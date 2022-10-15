@@ -60,19 +60,4 @@ object NetworkModule {
             .client(client)
             .build()
     }
-
-//    @[Provides Singleton]
-//    fun provideChuckerInterceptor(@ApplicationContext context: Context): ChuckerInterceptor {
-//        val chuckerCollector = ChuckerCollector(
-//            context = context,
-//            showNotification = true,
-//            retentionPeriod = RetentionManager.Period.ONE_HOUR
-//        )
-//
-//        return ChuckerInterceptor.Builder(context)
-//            .collector(chuckerCollector)
-//            .maxContentLength(250_000L)
-//            .alwaysReadResponseBody(true)
-//            .build()
-//    }
 }
