@@ -1,4 +1,4 @@
-package uz.javokhirdev.randoms.presentation
+package uz.javokhirdev.randoms.presentation.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +13,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import uz.javokhirdev.randoms.R
 import uz.javokhirdev.randoms.databinding.ActivityMainBinding
-import uz.javokhirdev.randoms.presentation.facts.FactsFragment
-import uz.javokhirdev.randoms.presentation.jokes.JokesFragment
-import uz.javokhirdev.randoms.presentation.more.MoreFragment
+import uz.javokhirdev.randoms.presentation.fragments.FactsFragment
+import uz.javokhirdev.randoms.presentation.fragments.JokesFragment
+import uz.javokhirdev.randoms.presentation.fragments.MoreFragment
 import uz.javokhirdev.randoms.presentation.navigation.NavRoutes
-import uz.javokhirdev.randoms.presentation.pictures.PicturesFragment
-import uz.javokhirdev.randoms.presentation.quotes.QuotesFragment
+import uz.javokhirdev.randoms.presentation.fragments.PicturesFragment
+import uz.javokhirdev.randoms.presentation.fragments.QuotesFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

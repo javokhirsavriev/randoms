@@ -29,9 +29,7 @@ class ListPhotoAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            with(binding) {
-                root.onClick { listener.onItemClick(getItem(layoutPosition)) }
-            }
+            binding.root.onClick { listener.onItemClick(getItem(layoutPosition)) }
         }
 
         fun bind(item: ListModel) {

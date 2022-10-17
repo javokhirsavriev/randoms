@@ -21,7 +21,7 @@ fun ImageView.loadImage(
 ) {
     val progressDrawable = CircularProgressDrawable(context)
     progressDrawable.strokeWidth = 10f
-    progressDrawable.centerRadius = 60f
+    progressDrawable.centerRadius = 48f
     progressDrawable.setColorSchemeColors(context.primaryColor())
     progressDrawable.start()
 

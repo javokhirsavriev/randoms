@@ -28,15 +28,11 @@ class ListTitleAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            with(binding) {
-                root.onClick { listener.onItemClick(getItem(layoutPosition)) }
-            }
+            binding.root.onClick { listener.onItemClick(getItem(layoutPosition)) }
         }
 
         fun bind(item: ListModel) {
-            with(binding) {
-                textTitle.text = item.title.orEmpty()
-            }
+            binding.textTitle.text = item.title.orEmpty()
         }
     }
 

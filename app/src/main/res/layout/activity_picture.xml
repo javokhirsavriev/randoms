@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.pictures.PictureActivity">
+    tools:context=".presentation.activities.PictureActivity">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/imageRandom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:adjustViewBounds="true"
         android:contentDescription="@string/image_content" />
 
     <com.google.android.material.appbar.AppBarLayout
@@ -30,13 +29,23 @@
             app:titleTextAppearance="@style/ToolbarTitleTextAppearance" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorSize="52dp"
+        app:trackCornerRadius="32dp"
+        app:trackThickness="4dp" />
+
     <LinearLayout
         android:id="@+id/layoutActions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:clipToPadding="false"
-        android:fitsSystemWindows="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 

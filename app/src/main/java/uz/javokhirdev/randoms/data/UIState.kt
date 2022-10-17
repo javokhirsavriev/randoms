@@ -1,7 +1,6 @@
 package uz.javokhirdev.randoms.data
 
 sealed class UIState<out T> where T : Any? {
-    object Idle : UIState<Nothing>()
     object Loading : UIState<Nothing>()
     data class Success<T>(val data: T? = null) : UIState<T>()
     data class Failure(val message: String) : UIState<Nothing>()
@@ -9,6 +8,16 @@ sealed class UIState<out T> where T : Any? {
     companion object {
         fun <T> success(data: T? = null) = Success(data)
         fun failure(message: String) = Failure(message)
+    }
+}
+
+infix fun <T> UIState<T>.onLoading(onLoading: UIState.Loading.() -> Unit): UIState<T> {
+    return when (this) {
+        is UIState.Loading -> {
+            onLoading(this)
+            this
+        }
+        else -> this
     }
 }
 

@@ -1,4 +1,4 @@
-package uz.javokhirdev.randoms.presentation.more
+package uz.javokhirdev.randoms.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -9,33 +9,39 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import uz.javokhirdev.randoms.R
 import uz.javokhirdev.randoms.core.extensions.repeatingJobOnStarted
+import uz.javokhirdev.randoms.core.extensions.start
 import uz.javokhirdev.randoms.core.extensions.vertical
 import uz.javokhirdev.randoms.data.model.ListModel
 import uz.javokhirdev.randoms.databinding.FragmentListBinding
+import uz.javokhirdev.randoms.presentation.activities.RandomActivity
 import uz.javokhirdev.randoms.presentation.adapters.ListItemListener
 import uz.javokhirdev.randoms.presentation.adapters.ListTitleAdapter
+import uz.javokhirdev.randoms.presentation.navigation.NavArguments
+import uz.javokhirdev.randoms.presentation.viewmodels.ListViewModel
 
 @AndroidEntryPoint
 class MoreFragment : Fragment(R.layout.fragment_list), ListItemListener {
 
     private val binding by viewBinding(FragmentListBinding::bind)
-
-    private val viewModel by viewModels<MoreViewModel>()
+    private val viewModel by viewModels<ListViewModel>()
 
     private val moreAdapter by lazy { ListTitleAdapter(requireContext(), this) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getMoreData()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding) {
-            rvList.vertical().adapter = moreAdapter
-        }
+        binding.rvList.vertical().adapter = moreAdapter
 
-        repeatingJobOnStarted {
-            viewModel.uiState.collectLatest { moreAdapter.submitList(it) }
-        }
+        repeatingJobOnStarted { viewModel.list.collectLatest { moreAdapter.submitList(it) } }
     }
 
     override fun onItemClick(model: ListModel) {
+        NavArguments.model = model
+        start(RandomActivity::class.java)
     }
 }

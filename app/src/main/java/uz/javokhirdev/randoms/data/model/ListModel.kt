@@ -6,5 +6,8 @@ data class ListModel(
     val cover: String? = null,
     val baseUrl: String? = null,
     val isImageUrl: Boolean = false,
-    val isListUrl: Boolean = false
+    val isListUrl: Boolean = false,
+    val isStringListUrl: Boolean = false,
+    val isProgramming: Boolean = false,
+    val type: RandomType = RandomType.MORE
 )

@@ -1,4 +1,4 @@
-package uz.javokhirdev.randoms.presentation.jokes
+package uz.javokhirdev.randoms.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -13,38 +13,35 @@ import uz.javokhirdev.randoms.core.extensions.repeatingJobOnStarted
 import uz.javokhirdev.randoms.core.extensions.start
 import uz.javokhirdev.randoms.data.model.ListModel
 import uz.javokhirdev.randoms.databinding.FragmentListBinding
+import uz.javokhirdev.randoms.presentation.activities.PictureActivity
 import uz.javokhirdev.randoms.presentation.adapters.ListItemListener
 import uz.javokhirdev.randoms.presentation.adapters.ListPhotoAdapter
 import uz.javokhirdev.randoms.presentation.navigation.NavArguments
+import uz.javokhirdev.randoms.presentation.viewmodels.ListViewModel
 
 @AndroidEntryPoint
-class JokesFragment : Fragment(R.layout.fragment_list), ListItemListener {
+class PicturesFragment : Fragment(R.layout.fragment_list), ListItemListener {
 
     private val binding by viewBinding(FragmentListBinding::bind)
+    private val viewModel by viewModels<ListViewModel>()
 
-    private val viewModel by viewModels<JokesViewModel>()
-
-    private val jokesAdapter by lazy { ListPhotoAdapter(requireContext(), this) }
+    private val picturesAdapter by lazy { ListPhotoAdapter(requireContext(), this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel.getJokes()
+        viewModel.getPictures()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding) {
-            rvList.grid().adapter = jokesAdapter
-        }
+        binding.rvList.grid().adapter = picturesAdapter
 
-        repeatingJobOnStarted { viewModel.uiState.collectLatest { jokesAdapter.submitList(it) } }
+        repeatingJobOnStarted { viewModel.list.collectLatest { picturesAdapter.submitList(it) } }
     }
 
     override fun onItemClick(model: ListModel) {
         NavArguments.model = model
-
-        start(JokeActivity::class.java)
+        start(PictureActivity::class.java)
     }
 }
